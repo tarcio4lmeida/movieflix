@@ -1,8 +1,9 @@
-import { Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route} from 'react-router-dom';
 import Home from 'pages/Home';
 import Navbar from 'components/Navbar';
-import Catalog from 'pages/Catalog';
-import history from 'util/history'
+import MovieCatalog from 'pages/MovieCatalog';
+import history from 'util/history';
+import PrivateRoute from 'components/PrivateRoute';
 
 const Routes = () => (
   <Router history={history}>
@@ -11,9 +12,11 @@ const Routes = () => (
       <Route path="/" exact>
         <Home />
       </Route>
-      <Route path="/movies">
-        <Catalog/>
-      </Route>
+      <PrivateRoute path="/movies">
+        <Route path="/movies" exact>
+          <MovieCatalog />
+        </Route>
+      </PrivateRoute>
     </Switch>
   </Router>
 );

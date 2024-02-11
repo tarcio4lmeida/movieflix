@@ -1,7 +1,6 @@
 import './styles.css';
 import '@popperjs/core';
 import 'bootstrap/js/dist/collapse';
-import { Link, NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import history from 'util/history';
 import { useContext } from 'react';
