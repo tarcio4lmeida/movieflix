@@ -1,0 +1,52 @@
+.search-container {
+  background-color: #ededed;
+  margin: 20px 0px 0px 0px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.inputbar-container {
+  font-size: 14px;
+  color: #a7a7a7;
+  border: 0px solid #ededed;
+  height: auto;
+  width: 100%;
+}
+
+.search-content {
+  display: flex;
+  width: auto;
+  text-align: center;
+  justify-content: center;
+}
+
+.search-content .btn-container {
+  justify-content: end;
+}
+
+.search-container .btn-container button {
+  border-radius: 0px 5px 5px 0px;
+}
+
+.btn-property {
+  background-color: #00285f;
+  justify-content: flex-end;
+}
+
+.btn h6 {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media (min-width: 336px) {
+  .search-content .btn-container {
+    width: 174px;
+  }
+}
+
+@media (min-width: 992px) {
+  .search-container {
+    padding: 40px 80px;
+  }
+}

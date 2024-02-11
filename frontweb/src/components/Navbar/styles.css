@@ -1,0 +1,61 @@
+.main-nav {
+  padding-left: 40px;
+  min-height: 70px;
+}
+
+
+.custom-toggler.navbar-toggler {
+  border-color: #00285F;
+} 
+
+.custom-toggler-color {
+  background-color: #00285F;
+}
+
+
+.nav-login-logout {
+  width: 97.71px;
+  padding: 5px;
+  border-color: #000000;
+  border-radius: 5px;
+  border: solid 1px black;
+  text-align: center;
+}
+
+.nav-login-logout:hover {
+  color: #003277;
+  border: solid 1px #003277;
+}
+
+.nav-login-logout a {
+  font-weight: 700;
+}
+
+.nav-logo-text {
+  color: #000000;
+}
+
+.nav-logo-text:c {
+  color: #011e47;
+}
+
+.main-menu {
+  display: flex;
+  font-size: 18px;
+  width: 380px;
+  justify-content: space-between;
+}
+
+.main-menu a {
+  font-style: normal;
+  color: #011e47;
+}
+
+.main-menu a.active {
+  font-weight: bold;
+  color: #00285F;
+}
+
+.main-menu a:hover {
+  color: #00285F;
+}
