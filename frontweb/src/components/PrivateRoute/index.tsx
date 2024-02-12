@@ -3,10 +3,9 @@ import { isAuthenticated } from 'util/auth';
 
 type Props = {
   children: React.ReactNode;
-  path: string;
 };
 
-const PrivateRoute = ({ children, path }: Props) => {
+const PrivateRoute = ({ children }: Props) => {
   return isAuthenticated() ? children : <Redirect to="/" />;
 };
 
