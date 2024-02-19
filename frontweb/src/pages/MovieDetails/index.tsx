@@ -1,14 +1,18 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { ReactComponent as ArrowIcon } from 'assets/images/arrow.svg';
+
 import { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 
 import { MovieReview } from 'types/MovieReview';
-import { requestBackend } from 'util/requests';
+import { BASE_URL, requestBackend } from 'util/requests';
 
 import './styles.css';
 import MovieReviews from 'components/MovieReviews';
 import { useForm } from 'react-hook-form';
 import { hasAnyRoles } from 'util/auth';
+import { Movie } from 'types/Movie';
 
 type Props = {
   movieId: string;
@@ -22,8 +26,26 @@ type FormData = {
 const MovieDetails = () => {
   const [movieReview, setMovieReview] = useState<MovieReview[]>([]);
   const { movieId } = useParams<Props>();
+  const [movie, setMovie] = useState<Movie>();
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const params: AxiosRequestConfig = {
+      method: 'GET',
+      url: `${BASE_URL}/movies/${movieId}`,
+      withCredentials: true,
+    };
+
+    requestBackend(params)
+      .then((response) => {
+        setMovie(response.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [movieId]);
 
   const {
     register,
@@ -77,8 +99,29 @@ const MovieDetails = () => {
 
   return (
     <div className="container">
-      <h1>Tela detalhes do filme: {movieId}</h1>
-      { hasAnyRoles(['ROLE_MEMBER']) && (
+      <Link to="/movies">
+        <div className="goback-container arrow ">
+          <ArrowIcon />
+          <h2 className="text-white">VOLTAR</h2>
+        </div>
+      </Link>
+      {movie && (
+        <div className="base-card movie-detail-movie-card">
+          <div className="movie-detail-top-container">
+            <img src={movie.imgUrl} alt={movie.title} />
+          </div>
+          <div className="movie-detail-bottom-container">
+            <h6>{movie.title}</h6>
+            <h5>{movie.year}</h5>
+            <h4>{movie.subTitle}</h4>
+            <div className="movie-detail-card-bottom-container">
+              <h3>{movie.synopsis}</h3>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {hasAnyRoles(['ROLE_MEMBER']) && (
         <div className="search-container base-card">
           {errors.text && (
             <div className="alert alert-danger">Campo obrigatório</div>
@@ -96,8 +139,11 @@ const MovieDetails = () => {
                 placeholder="Deixe sua avaliação aqui"
                 name="text"
               />
-              <button type="submit" className="btn btn-primary search-button">
-                SALVAR ALTERAÇÃO
+              <button
+                type="submit"
+                className="btn btn-primary movie-detail-search-button"
+              >
+                SALVAR AVALIAÇÃO
               </button>
             </div>
           </form>

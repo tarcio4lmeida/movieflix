@@ -38,3 +38,29 @@ a:hover {
   color: #FFFFFF;
   background-color: #FEFEFE;
 }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.goback-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.goback-container h2 {
+  margin-left: 15px;
+  font-size: 1em;
+  color: #263238;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+}
+
+.goback-container svg {
+  margin-left: 5px;
+  color: #ffc700;
+  transform: rotate(-180deg);
+}

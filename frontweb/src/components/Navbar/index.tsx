@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { AuthContext } from 'AuthContext';
 import { getTokenData, isAuthenticated } from 'util/auth';
 import { removeAuthData } from 'util/storage';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const { authContextData, setAuthContextData } = useContext(AuthContext);
@@ -35,7 +36,9 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-md custom-toggler.navbar-toggler bg-primary main-nav">
       <div className="container-fluid">
-        <h4>MovieFlix</h4>
+        <Link to="/movies">
+          <h1>MovieFlix</h1>
+        </Link>
         {authContextData.authenticated && (
           <div className="nav-login-logout">
             <>
